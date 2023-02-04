@@ -6,12 +6,14 @@ class RegisterController{
     async exec(req, res, next){
         try{
 
+            let password = await bcrypt.hash(req.body.password, 8)
+
             const userData = {
                 name: req.body.name,
                 email: req.body.email,
                 phone: req.body.phone,
                 phone: req.body.address,
-                password: bcrypt.hashSync('sayabukanrobot123', 8)
+                password
             }
 
             let data = await User.create(userData)
