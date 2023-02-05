@@ -9,7 +9,7 @@ class RegisterController {
         name: req.body.name,
         email: req.body.email,
         phone: req.body.phone,
-        phone: req.body.address,
+        address: req.body.address,
         password: bcrypt.hashSync("sayabukanrobot123", 8),
       };
 
