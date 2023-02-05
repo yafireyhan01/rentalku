@@ -10,8 +10,8 @@ class Login{
 
             let email = req.body.email;
             let password = req.body.password;
-
-            let findEmail = await User.findOne({email: email})
+            
+            let findEmail = await User.findOne({where:{email}})
 
             if(!findEmail)throw new Error("Username atau password salah");
 
