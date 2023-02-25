@@ -1,12 +1,21 @@
 const User = require('../../models').Users
 const bcrypt = require('bcryptjs')
-
+const { validationResult} = require("express-validator")
 const jwt = require("jsonwebtoken")
 require('dotenv').config()
 
 class Login{
     async exec (req, res, next){
         try{
+
+            const errors = validationResult(req);
+
+            if (!errors.isEmpty()) {
+                return res.status(400).send({
+                    status: "Error",
+                    message: errors.array()
+                });
+            }
 
             let email = req.body.email;
             let password = req.body.password;
